@@ -4,8 +4,11 @@ import Image from "next/image";
 import Button from "../components/Button";
 import Menu from "../components/Menu";
 import styles from "../styles/Home.module.css";
+import { LinkIcon, TrashIcon } from "@heroicons/react/24/solid";
+import { useRouter } from "next/router";
 
 const Home: NextPage = () => {
+  const router = useRouter();
   return (
     <div className="container mx-auto w-full">
       <Head>
@@ -16,21 +19,25 @@ const Home: NextPage = () => {
 
       <Menu />
 
-      <div className="flex flex-col place-items-center py-44 space-y-3">
+      <div className="flex flex-col place-items-center space-y-3 py-44">
         <h1 className="text-5xl font-bold">Ayo Mulai Voting</h1>
-        <h2 className="text-lg bg-zinc-100 py-1 px-3">
+        <h2 className="bg-zinc-100 py-1 px-3 text-lg">
           Web Voting No.1 di Indonesia
         </h2>
         <Image alt={"home"} src={"/assets/home.svg"} width={274} height={243} />
         <div className="space-x-10">
-          <Button text="Buat Vote Baru" className="font-bold" />
+          <Button
+            text="Buat Vote Baru"
+            className="font-bold"
+            onClick={() => router.push("/vote/create")}
+          />
           <Button text="Ikut Vote" type="secondary" className="font-bold" />
         </div>
       </div>
 
       <div>
-        <p className="py-5 font-lg font-bold">Vote yang saya buat</p>
-        <table className="table-auto w-full border border-zinc-100">
+        <p className="font-lg py-5 font-bold">Vote yang saya buat</p>
+        <table className="w-full table-auto border border-zinc-100">
           <tr className="border-b border-zinc-100">
             <th className="p-5 text-left">No.</th>
             <th className="p-5 text-left">Judul</th>
@@ -48,7 +55,16 @@ const Home: NextPage = () => {
               <td className="p-5 text-left">CNJKSHCUI</td>
               <td className="p-5 text-left">26 March 2023 09:00</td>
               <td className="p-5 text-left">28 March 2023 23:59</td>
-              <td className="p-5 text-left"></td>
+              <td className="p-5 text-left">
+                <div>
+                  <a href="#">
+                    <LinkIcon className="h-8 w-8 p-2 hover:bg-zinc-200" />
+                  </a>
+                  <a href="#">
+                    <TrashIcon className="h-8 w-8 p-2 hover:bg-zinc-200" />
+                  </a>
+                </div>
+              </td>
             </tr>
           </tbody>
         </table>
